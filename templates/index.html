@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Music Generator</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ece9f7 0%, #cfd9df 100%);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      padding: 40px 32px 32px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 2.2rem;
+      margin-bottom: 24px;
+      color: #3a3a5a;
+      letter-spacing: 1px;
+    }
+    form {
+      margin-bottom: 24px;
+    }
+    button[type="submit"] {
+      background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(100, 125, 222, 0.15);
+      transition: background 0.2s, transform 0.2s;
+    }
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    h3 {
+      color: #7f53ac;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    audio {
+      width: 100%;
+      margin-bottom: 12px;
+      outline: none;
+      border-radius: 6px;
+      background: #f5f6fa;
+      box-shadow: 0 1px 4px rgba(100, 125, 222, 0.08);
+    }
+    a[download] {
+      display: inline-block;
+      margin-top: 8px;
+      color: #647dee;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed #647dee;
+      transition: color 0.2s, border-bottom 0.2s;
+    }
+    a[download]:hover {
+      color: #7f53ac;
+      border-bottom: 1px solid #7f53ac;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎶 AI Music Generator</h1>
+    <form method="POST">
+      <button type="submit">Generate Music</button>
+    </form>
+    {% if music_generated %}
+      <h3>Preview MIDI:</h3>
+      <audio controls>
+        <source src="{{ url_for('static', filename='generated_music.mid') }}" type="audio/midi">
+      </audio>
+      <p><a href="{{ url_for('static', filename='generated_music.mid') }}" download>Download MIDI</a></p>
+    {% endif %}
+  </div>
+</body>
+</html>
